@@ -25,7 +25,10 @@ if [ "$1" = 'mysqlrouter' ]; then
 	    echo "to be set. Exiting."
 	    exit 1
     fi
-
+    if [ -f $MYSQL_PASSWORD ] ; then
+        P=$(cat $MYSQL_PASSWORD)
+        MYSQL_PASSWORD=$P
+    fi
     echo $MYSQL_PASSWORD > /tmp/mysqlrouter-pass
     unset MYSQL_PASSWORD
     max_tries=12
